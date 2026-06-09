@@ -25,12 +25,14 @@ def run(cpu):
     return data
 
 def exp(cpu):
+    print("Exp Fig. 2: Identifying the Existence of the SFP")
     build()
     data_init = run(cpu)
     data = [int(i) for i in data_init.strip().split(" ")]
     data_file = Path(__file__).resolve().parent.parent / "data" / "fig-2.json"
     with open(data_file, "w") as f:
         json.dump(data, f)
+    print("\tExperiment completed and data saved to fig-2.json\n------------------\n")
 
 def plot():
     # Load Data
@@ -47,6 +49,7 @@ def plot():
     figure_dir = Path(__file__).resolve().parent.parent / "figure"
     figure_dir.mkdir(exist_ok=True)
     plt.savefig(figure_dir / "fig-2.svg", dpi=600)
+    plt.close()
 
 if __name__ == "__main__":
     exp(3)

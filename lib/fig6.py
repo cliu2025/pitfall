@@ -35,6 +35,7 @@ def run(cpu):
     return data
 
 def exp(cpu):
+    print("Exp Fig. 6: Evaluate the accuracy of Pitfall-v1 under different test byte sizes")
     acc_data = []
     for i in tqdm(range(1, 1000), ncols=80, dynamic_ncols=True, leave=False):
         build(i)
@@ -43,6 +44,7 @@ def exp(cpu):
     data_file = Path(__file__).resolve().parent.parent / "data" / "fig-6.json"
     with open(data_file, "w") as f:
         json.dump(acc_data, f)
+    print("\tExperiment completed and data saved to fig-6.json\n------------------\n")
 
 def plot():
     # Load Data
@@ -64,6 +66,7 @@ def plot():
     figure_dir = Path(__file__).resolve().parent.parent / "figure"
     figure_dir.mkdir(exist_ok=True)
     plt.savefig(figure_dir / "fig-6.svg", dpi=600)
+    plt.close()
 
 if __name__ == "__main__":
     # exp(3)

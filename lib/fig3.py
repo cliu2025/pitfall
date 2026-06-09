@@ -26,6 +26,7 @@ def run(cpu):
     return data
 
 def exp(cpu):
+    print("Exp Fig. 3: Characterizing the SFP Collision Behavior")
     data_file = Path(__file__).resolve().parent.parent / "data" / "fig-3.json"
     collided_data = []
     for i in tqdm(range(1, 20), ncols=80, dynamic_ncols=True, leave=False):
@@ -35,6 +36,7 @@ def exp(cpu):
             collided_data.append([i, j, data])
     with open(data_file, "w") as f:
         json.dump(collided_data, f)
+    print("\tExperiment completed and data saved to fig-3.json\n------------------\n")
 
 def plot():
     # Format Configuration
@@ -76,6 +78,7 @@ def plot():
     figure_dir = Path(__file__).resolve().parent.parent / "figure"
     figure_dir.mkdir(exist_ok=True)
     plt.savefig(figure_dir / "fig-3.svg", dpi=600)
+    plt.close()
 
 if __name__ == "__main__":
     exp(3)

@@ -1,7 +1,7 @@
 CFLAGS = -D_GNU_SOURCE
 
 bin	:= ../../bin
-obj	:= $(bin)/pitfall-v1-poc
+obj	:= $(bin)/pitfall-v2-poc
 
 all: $(obj)
 

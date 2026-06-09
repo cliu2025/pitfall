@@ -7,7 +7,7 @@
 import argparse
 import os
 from collections.abc import Sequence
-from lib import fig2, fig3, fig6
+from lib import fig2, fig3, fig6, v1, v2, poc
 
 
 EXP_CHOICES = (
@@ -90,8 +90,8 @@ def main():
     parser = build_parser(supported_cores)
     args = parser.parse_args()
 
-    print(f"Experiment: {args.exp}")
-    print(f"CPU core:   {args.core}")
+    print(f"- Experiment setup: {args.exp}")
+    print(f"- Tested core:   {args.core}\n")
 
     if args.exp == "fig2":
         fig2.exp(args.core)
@@ -102,6 +102,14 @@ def main():
     elif args.exp == "fig6":
         fig6.exp(args.core)
         fig6.plot()
+    elif args.exp == "v1":
+        v1.exp(args.core)
+    elif args.exp == "v2":
+        v2.exp(args.core)
+    elif args.exp == "v1-poc":
+        poc.exp(args.core, 'v1')
+    elif args.exp == "v2-poc":
+        poc.exp(args.core, 'v2')
     elif args.exp == "all":
         fig2.exp(args.core)
         fig2.plot()
@@ -109,6 +117,8 @@ def main():
         fig3.plot()
         fig6.exp(args.core)
         fig6.plot()
+        v1.exp(args.core)
+        v2.exp(args.core)
     else:
         pass
 

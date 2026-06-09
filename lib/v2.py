@@ -9,15 +9,15 @@ from tqdm import tqdm
 from pathlib import Path
 
 def build(test_byte_size):
-    makefile_dir = Path(__file__).resolve().parent.parent / "src" / "pitfall-v1"
-    makefile = "v1.make"
+    makefile_dir = Path(__file__).resolve().parent.parent / "src" / "pitfall-v2"
+    makefile = "v2.make"
     cmd = f"make -C {makefile_dir} -f {makefile} clean && make -C {makefile_dir} -f {makefile}"
     # print(cmd)
     subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return
 
 def run(cpu):
-    elf = Path(__file__).resolve().parent.parent / "bin" / "pitfall-v1-eval"
+    elf = Path(__file__).resolve().parent.parent / "bin" / "pitfall-v2-eval"
     cmd = f"taskset -c {cpu} {elf}"
     e = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
     pat = re.compile(
@@ -35,18 +35,18 @@ def run(cpu):
 
 def exp(cpu):
     print("Evaluation on Pitfall-v1")
-    v1_data = []
+    v2_data = []
     for i in tqdm(range(1, 11), ncols=80, dynamic_ncols=True, leave=False):
         build(i)
         data = run(cpu)
         if (len(data) == 4):
-            v1_data.append(data)
-    data_file = Path(__file__).resolve().parent.parent / "data" / "v1.json"
+            v2_data.append(data)
+    data_file = Path(__file__).resolve().parent.parent / "data" / "v2.json"
     with open(data_file, "w") as f:
-        json.dump(v1_data, f)
-    best_through_of_all = max(v1_data, key=lambda x: x[2])
-    print(f"Evaluation on Pitfall-v1:\nAccuracy: {best_through_of_all[0]}\nThroughput: {best_through_of_all[2]}\nNumber of Function calls: {best_through_of_all[3]}")
+        json.dump(v2_data, f)
+    best_through_of_all = max(v2_data, key=lambda x: x[2])
+    print(f"Evaluation of Pitfall-v2:\nAccuracy: {best_through_of_all[0]}\nThroughput: {best_through_of_all[2]}\nNumber of Function calls: {best_through_of_all[3]}")
     print("------------------\n")
-    
+
 if __name__ == "__main__":
     exp(3)
