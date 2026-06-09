@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd ..
+
+ALEXA_N="${1:-10}"
+SITES_LIST="alexa${ALEXA_N}"
+echo "Using sites list: $SITES_LIST"
+export DISPLAY="${DISPLAY:-:1}"
+
 
 CHROME_VERSION="149.0.7827.55"
 CFT_BASE_URL="https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}/linux64"
@@ -87,7 +94,7 @@ echo "DISPLAY: $DISPLAY"
 
 
 echo "Starting record.py..."
-python3 record.py --sites_list alexa10 --num_runs 100 --out_directory default --browser chrome --chrome_binary_path ./chrome_path --disable_chrome_sandbox True --twilio_interval 0
+python3 record.py --sites_list SITES_LIST --num_runs 100 --out_directory default --browser chrome --chrome_binary_path ./chrome_path --disable_chrome_sandbox True --twilio_interval 0
 
 echo ""
 echo "========================================"
