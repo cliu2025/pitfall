@@ -26,7 +26,5 @@ fi
 # 4. Update the environment（environment.yml）
 conda env update -n ${ENV_NAME} -f environment.yml --prune
 
-# 5. Acticate the environment
-conda activate ${ENV_NAME}
-
-echo "🎉 Environment '${ENV_NAME}' is ready and activated."
+# 5. Build empty data file
+mkdir -p data
