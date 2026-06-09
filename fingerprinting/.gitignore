@@ -5,3 +5,5 @@ extensions/cache.crs
 extensions/interrupts.crx
 chrome_path/
 default/
+.pitfall/
+count.txt
