@@ -2,6 +2,11 @@ CFLAGS = -D_GNU_SOURCE
 
 bin	:= ../../bin
 obj	:= $(bin)/pitfall-v2-poc
+secret ?= ''
+
+ifneq ($(strip $(secret)),)
+CFLAGS += -DSECRET_STRING='"$(secret)"'
+endif
 
 all: $(obj)
 

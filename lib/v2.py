@@ -11,7 +11,7 @@ from pathlib import Path
 def build(test_byte_size):
     makefile_dir = Path(__file__).resolve().parent.parent / "src" / "pitfall-v2"
     makefile = "v2.make"
-    cmd = f"make -C {makefile_dir} -f {makefile} clean && make -C {makefile_dir} -f {makefile}"
+    cmd = f"make -C {makefile_dir} -f {makefile} clean && make -C {makefile_dir} -f {makefile} test_byte_size={test_byte_size}"
     # print(cmd)
     subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return
@@ -33,11 +33,11 @@ def run(cpu):
         data = []
     return data
 
-def exp(cpu):
-    print("Evaluation on Pitfall-v1")
+def exp(cpu, byte_size):
+    print("Evaluation on Pitfall-v2")
     v2_data = []
-    for i in tqdm(range(1, 11), ncols=80, dynamic_ncols=True, leave=False):
-        build(i)
+    for i in tqdm(range(0, 10), ncols=80, dynamic_ncols=True, leave=False):
+        build(byte_size)
         data = run(cpu)
         if (len(data) == 4):
             v2_data.append(data)
@@ -49,4 +49,4 @@ def exp(cpu):
     print("------------------\n")
 
 if __name__ == "__main__":
-    exp(3)
+    exp(3, 1000)

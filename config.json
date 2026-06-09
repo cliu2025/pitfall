@@ -1,0 +1,7 @@
+{
+    "fig6_test_byte_range": 1000,
+    "pitfall_v1_eval_byte_size": 1000,
+    "pitfall_v2_eval_byte_size": 1000,
+    "pitfall_v1_poc_string": "Pitfall-v1: in-place attack.",
+    "pitfall_v2_poc_string": "Pitfall-v2: out-of-place attack."
+}

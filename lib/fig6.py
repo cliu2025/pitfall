@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 def build(test_byte_size):
     makefile_dir = Path(__file__).resolve().parent.parent / "src" / "pitfall-v1"
     makefile = "fig-6.make"
-    cmd = f"make -C {makefile_dir} -f {makefile} clean && make -C {makefile_dir} -f {makefile}"
+    cmd = f"make -C {makefile_dir} -f {makefile} clean && make -C {makefile_dir} -f {makefile} test_byte_size={test_byte_size}"
     # print(cmd)
     subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return
@@ -34,10 +34,10 @@ def run(cpu):
         data = []
     return data
 
-def exp(cpu):
+def exp(cpu, test_byte_range):
     print("Exp Fig. 6: Evaluate the accuracy of Pitfall-v1 under different test byte sizes")
     acc_data = []
-    for i in tqdm(range(1, 1000), ncols=80, dynamic_ncols=True, leave=False):
+    for i in tqdm(range(1, test_byte_range + 1), ncols=80, dynamic_ncols=True, leave=False):
         build(i)
         data = run(cpu)
         acc_data.append(data[0])
@@ -69,5 +69,5 @@ def plot():
     plt.close()
 
 if __name__ == "__main__":
-    # exp(3)
+    exp(3, 1000)
     plot()

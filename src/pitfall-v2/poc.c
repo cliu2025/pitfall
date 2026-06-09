@@ -12,6 +12,10 @@
 
 #define CACHE_SHL 9
 #define CACHE_ST (1 << CACHE_SHL)
+#ifndef SECRET_STRING
+#define SECRET_STRING "Pitfall-v2: out-of-place attack.\0"
+#endif
+
 
 uint64_t cache_state_shreshold;
 
@@ -27,7 +31,7 @@ size_t idx;
 Victim code.
 ********************************************************************/
 
-char* secret = "Pitfall-v2: out-of-place attack.\0";
+char* secret = SECRET_STRING;
 
 uint8_t temp = 0; /* avlid compiler optimization of the victim_function */
 

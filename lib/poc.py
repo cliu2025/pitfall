@@ -5,10 +5,11 @@ import os
 import subprocess
 from pathlib import Path
 
-def build(poc):
+def build(poc, secret_str):
     makefile_dir = Path(__file__).resolve().parent.parent / "src" / f"pitfall-{poc}"
     makefile = f"{poc}-poc.make"
-    cmd = f"make -C {makefile_dir} -f {makefile} clean && make -C {makefile_dir} -f {makefile}"
+    cmd = f"make -C {makefile_dir} -f {makefile} clean && make -C {makefile_dir} -f {makefile} secret='{secret_str}'"
+    # print(cmd)
     subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return
 
@@ -17,9 +18,9 @@ def run(cpu, poc):
     cmd = f"taskset -c {cpu} {elf}"
     os.system(cmd)
 
-def exp(cpu, poc):
-    build(poc)
+def exp(cpu, poc, secret_str):
+    build(poc, secret_str)
     run(cpu, poc)
 
 if __name__ == "__main__":
-    exp(3, 'v2')
+    exp(3, 'v1', '')
