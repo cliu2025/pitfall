@@ -1,6 +1,6 @@
 all: test
 
-test: main.c asm.S
+test: src/main.c src/asm.S
 	$(CC) $^ -o $@ -D_GNU_SOURCE
 
 clean:
