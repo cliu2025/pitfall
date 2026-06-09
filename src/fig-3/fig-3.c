@@ -7,7 +7,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/mman.h>
-#include <sys/prctl.h>
 
 #define REPEAT 100
 #define LOOP_TRY 10
@@ -18,24 +17,6 @@ extern void stl_2(void* store_addr, void* load_addr, uint64_t st_val);
 
 uint64_t* shared_mem;
 uint64_t cache_threshold;
-
-int ssbd_enable() {
-    if (prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, PR_SPEC_DISABLE, 0, 0) == -1) {
-        perror("prctl");
-        return 1;
-    }
-    printf("SSBD has been enabled.\n");
-    return 0;
-}
-
-int ssbd_disable() {
-    if (prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, PR_SPEC_ENABLE, 0, 0) == -1) {
-        perror("prctl");
-        return 1;
-    }
-    printf("SSBD has been disabled.\n");
-    return 0;
-}
 
 int sfp_exp() {
     int A[10];

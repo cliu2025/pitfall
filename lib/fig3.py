@@ -67,7 +67,6 @@ def plot():
         cmap=cmap_color
     )
     ax_.invert_yaxis()
-    # plt.tight_layout()
     plt.xlabel("Aligned LSBs of Store PC", fontsize=16)
     plt.ylabel("Aligned LSBs of Load PC", fontsize=16)
     colorbar = ax_.collections[0].colorbar

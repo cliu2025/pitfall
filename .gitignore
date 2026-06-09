@@ -1,5 +1,6 @@
 bin/*
 data/*
 figure/*
+lib/__pycache__/
 
 !figure/example-*
