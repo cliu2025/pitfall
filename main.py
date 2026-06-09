@@ -21,6 +21,7 @@ EXP_CHOICES = (
     "all",
     "v1-poc",
     "v2-poc",
+    "v3-poc"
 )
 
 

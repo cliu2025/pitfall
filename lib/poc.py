@@ -23,4 +23,4 @@ def exp(cpu, poc, secret_str):
     run(cpu, poc)
 
 if __name__ == "__main__":
-    exp(3, 'v1', '')
+    exp(3, 'v2')
