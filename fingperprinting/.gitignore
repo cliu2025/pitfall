@@ -1,0 +1,7 @@
+test
+ebpf/Cargo.lock
+ebpf/Cargo.toml
+extensions/cache.crs
+extensions/interrupts.crx
+chrome_path/
+default/

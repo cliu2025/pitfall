@@ -63,8 +63,8 @@ echo ""
 echo "========================================"
 echo "[4/7] Prepare Python environment"
 echo "========================================"
-python3 -m venv .pitfall
-source .pitfall/bin/activate
+# python3 -m venv .pitfall
+# source .pitfall/bin/activate
 
 echo "Python path:"
 which python
@@ -72,11 +72,11 @@ which python
 echo "Python version:"
 python --version
 
-echo "Upgrading pip, setuptools, and wheel..."
-python -m pip install --upgrade pip setuptools wheel
+# echo "Upgrading pip, setuptools, and wheel..."
+# python -m pip install --upgrade pip setuptools wheel
 
-echo "Installing Python requirements..."
-python -m pip install -r requirements.txt
+# echo "Installing Python requirements..."
+# python -m pip install -r requirements.txt
 
 echo ""
 echo "========================================"
