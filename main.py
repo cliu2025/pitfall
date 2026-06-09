@@ -7,7 +7,7 @@
 import argparse
 import os
 from collections.abc import Sequence
-from lib import fig2, fig3
+from lib import fig2, fig3, fig6
 
 
 EXP_CHOICES = (
@@ -99,11 +99,16 @@ def main():
     elif args.exp == "fig3":
         fig3.exp(args.core)
         fig3.plot()
+    elif args.exp == "fig6":
+        fig6.exp(args.core)
+        fig6.plot()
     elif args.exp == "all":
         fig2.exp(args.core)
         fig2.plot()
         fig3.exp(args.core)
         fig3.plot()
+        fig6.exp(args.core)
+        fig6.plot()
     else:
         pass
 

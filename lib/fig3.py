@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 
 def build(st_aligned_bits, ld_aligned_bits):
-    makefile_dir = Path(__file__).resolve().parent.parent / "src" / "fig-3"
+    makefile_dir = Path(__file__).resolve().parent.parent / "src" / "org"
     makefile = "fig-3.make"
     cmd = f"make -C {makefile_dir} -f {makefile} clean && make -C {makefile_dir} -f {makefile} align_size_st={(1 << st_aligned_bits)} align_size_ld={(1 << ld_aligned_bits)}"
     subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

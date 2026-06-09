@@ -11,7 +11,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 def build():
-    makefile_dir = Path(__file__).resolve().parent.parent / "src" / "fig-2"
+    makefile_dir = Path(__file__).resolve().parent.parent / "src" / "existence"
     makefile = "fig-2.make"
     cmd = f"make -C {makefile_dir} -f {makefile} clean && make -C {makefile_dir} -f {makefile}"
     subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
