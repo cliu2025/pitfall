@@ -26,13 +26,13 @@ EXP_CHOICES = (
 
 def get_supported_cores() -> list[int]:
     """Return the CPU core IDs currently available to this process."""
-    # On Linux, this also respects CPU-affinity and container restrictions.
+    # On Linux, this also respects CPU-affinity and container restrictions
     if hasattr(os, "sched_getaffinity"):
         cores = sorted(os.sched_getaffinity(0))
         if cores:
             return cores
 
-    # Portable fallback: assume CPU IDs are contiguous and start at zero.
+    # Portable fallback: assume CPU IDs are contiguous and start at zero
     cpu_count = os.cpu_count()
     if cpu_count is None or cpu_count < 1:
         return [0]
@@ -96,11 +96,13 @@ def main():
     config = {}
     with open("config.json", 'r') as f:
         config = json.load(f)
+    config_fig6_test_range = 1000
     config_pitfall_v1_eval_byte_size = 1000
     config_pitfall_v2_eval_byte_size = 1000
     config_pitfall_v1_poc_string = ""
     config_pitfall_v2_poc_string = ""
-    config_fig6_test_range = 1000
+    if "fig6_test_byte_range" in config.keys():
+        config_fig6_test_range = config["fig6_test_byte_range"]
     if "pitfall_v1_eval_byte_size" in config.keys():
         config_pitfall_v1_eval_byte_size = config["pitfall_v1_eval_byte_size"]
     if "pitfall_v2_eval_byte_size" in config.keys():
@@ -109,8 +111,6 @@ def main():
         config_pitfall_v1_poc_string = config["pitfall_v1_poc_string"]
     if "pitfall_v2_poc_string" in config.keys():
         config_pitfall_v2_poc_string = config["pitfall_v2_poc_string"]
-    if "fig6_test_byte_range" in config.keys():
-        config_fig6_test_range = config["fig6_test_byte_range"]
 
     print(f"- Experiment setup: {args.exp}")
     print(f"- Tested core:   {args.core}\n")
