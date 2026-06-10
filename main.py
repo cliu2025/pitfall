@@ -8,7 +8,7 @@ import argparse
 import json
 import os
 from collections.abc import Sequence
-from lib import fig2, fig3, fig6, v1, v2, poc
+from lib import fig2, fig3, fig6, v1, v2, v3, poc
 
 
 EXP_CHOICES = (
@@ -18,10 +18,9 @@ EXP_CHOICES = (
     "v1",
     "v2",
     "v3",
-    "all",
+    "default",
     "v1-poc",
-    "v2-poc",
-    "v3-poc"
+    "v2-poc"
 )
 
 
@@ -71,7 +70,7 @@ def build_parser(supported_cores: Sequence[int]) -> argparse.ArgumentParser:
         "-E",
         "--exp",
         choices=EXP_CHOICES,
-        default="all",
+        default="default",
         help="experiment to run",
     )
 
@@ -100,6 +99,7 @@ def main():
     config_fig6_test_range = 1000
     config_pitfall_v1_eval_byte_size = 1000
     config_pitfall_v2_eval_byte_size = 1000
+    config_pitfall_v3_number_of_sites = 4
     config_pitfall_v1_poc_string = ""
     config_pitfall_v2_poc_string = ""
     if "fig6_test_byte_range" in config.keys():
@@ -112,6 +112,8 @@ def main():
         config_pitfall_v1_poc_string = config["pitfall_v1_poc_string"]
     if "pitfall_v2_poc_string" in config.keys():
         config_pitfall_v2_poc_string = config["pitfall_v2_poc_string"]
+    if "pitfall_v3_number_of_sites" in config.keys():
+        config_pitfall_v3_number_of_sites = config["pitfall_v3_number_of_sites"]
 
     print(f"- Experiment setup: {args.exp}")
     print(f"- Tested core:   {args.core}\n")
@@ -134,7 +136,7 @@ def main():
         poc.exp(args.core, 'v1', config_pitfall_v1_poc_string)
     elif args.exp == "v2-poc":
         poc.exp(args.core, 'v2', config_pitfall_v2_poc_string)
-    elif args.exp == "all":
+    elif args.exp == "default":
         fig2.exp(args.core)
         fig2.plot()
         fig3.exp(args.core)
@@ -143,6 +145,8 @@ def main():
         fig6.plot()
         v1.exp(args.core, config_pitfall_v1_eval_byte_size)
         v2.exp(args.core, config_pitfall_v2_eval_byte_size)
+    elif args.exp == "v3":
+        v3.exp(config_pitfall_v3_number_of_sites)
     else:
         pass
 
