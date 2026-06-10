@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# SPDX-License-Identifier: GPL-3.0-only
+# Copyright (C) 2026 Xin Zhang
+
 set -euo pipefail
 cd ..
 
