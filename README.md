@@ -196,6 +196,31 @@ Here, `<experiment-name>` specifies the experiment to run, including the followi
 
 Additionally, `<cpu-id>` indicates the processor core ID to which the SFP experiment/exploit code is bound. This defaults to the maximum processor core ID supported by the system.
 
+### Expected Output
+
+Depending on the experiment, the results will be generated as follows:
+
+- `fig2`, `fig3`, `fig6`, and `v3`: The generated figures will be saved in the `figure` directory. Note that this directory already contains several sample figures generated on an Intel Xeon 6982P-C CPU for reference.
+- `v1` and `v2`: Performance statistics will be printed directly to the console. The expected output is similar to the following:
+
+    ```shell
+    Evaluation on Pitfall-v1
+    Evaluation on Pitfall-v1:
+    Accuracy: 1.0
+    Throughput: 2606.35
+    Number of Function calls: 82.3
+    ------------------
+
+    Evaluation on Pitfall-v2
+    Evaluation of Pitfall-v2:
+    Accuracy: 1.0
+    Throughput: 2536.23
+    Number of Function calls: 3.21
+    ------------------
+    ```
+
+- `v1-poc` and `v2-poc`: The leaked strings will be output to the console.
+
 ### Customized Configuration
 
 Configure file `config.json` can be modified to customize the attack configurations. The currently supported attributes include:
