@@ -9,6 +9,7 @@ warnings.filterwarnings("ignore")
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import top_k_accuracy_score
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
 from tqdm import trange
 
 parser = argparse.ArgumentParser()
