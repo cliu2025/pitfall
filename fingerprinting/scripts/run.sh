@@ -48,7 +48,7 @@ echo "DISPLAY: $DISPLAY"
 
 
 echo "Starting record.py..."
-python3 record.py --sites_list SITES_LIST --num_runs 100 --out_directory default --browser chrome --chrome_binary_path ./chrome_path --disable_chrome_sandbox True --twilio_interval 0
+python3 record.py --sites_list ${SITES_LIST} --num_runs 100 --out_directory default --browser chrome --chrome_binary_path ./chrome_path --disable_chrome_sandbox True --twilio_interval 0
 
 echo ""
 echo "========================================"
