@@ -4,3 +4,4 @@ figure/*
 lib/__pycache__/
 
 !figure/example-*
+!figure/artifact.png
