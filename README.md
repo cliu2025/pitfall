@@ -205,6 +205,7 @@ Configure file `config.json` can be modified to customize the attack configurati
 - `pitfall_v2_eval_byte_size`: The length of leaked bytes when running the Pitfall-v2 evaluation experiment
 - `pitfall_v1_poc_string`: The target string to be leaked, stored within the victim's memory space, when running the Pitfall-v1 PoC code
 - `pitfall_v2_poc_string`: The target string to be leaked, stored within the victim's memory space, when running the Pitfall-v2 PoC code
+- `pitfall_v3_number_of_sites`: Number of sites evaluated in Pitfall-v3
 
 ## Research Paper
 
