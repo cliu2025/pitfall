@@ -19,8 +19,8 @@ echo "========================================"
 echo "[0/3] Prepare Python environment"
 echo "========================================"
 
-source "$HOME/miniconda3/etc/profile.d/conda.sh"
-conda activate pitfall-env
+# source "$HOME/miniconda3/etc/profile.d/conda.sh"
+# conda activate pitfall-env
 
 # Should use conda
 echo "Python path:"
