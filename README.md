@@ -130,6 +130,7 @@ Here, `<experiment-name>` specifies the experiment to run, including the followi
 - `v3`: Pitfall-v3 PoC for identifying specific websites, corresponds to Fig. 8 in the paper
 - `v1-poc`: Pitfall-v1 string leakage PoC example
 - `v2-poc`: Pitfall-v2 string leakage PoC example
+- `v3-poc`: Pitfall-v2 string leakage PoC example
 - `all`: Sequentially executes fig2, fig3, fig6, v1, v2, and v3 experiments (Default)
 
 Additionally, `<cpu-id>` indicates the processor core ID to which the SFP experiment/exploit code is bound. This defaults to the maximum processor core ID supported by the system.
