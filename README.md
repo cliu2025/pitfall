@@ -106,6 +106,16 @@ ChromeDriver version:
 ChromeDriver 149.0.7827.55 (3188f8a607ae7e067593be8aab7f02d2451fec07-refs/branch-heads/7827@{#1982})
 ```
 
+### (Optional) VNC Setup
+
+We recommend running the Pitfall-v3 experiments on a Linux operating system equipped with a GUI (e.g., Ubuntu 24.04.1 LTS) by logging into the desktop environment and launching a terminal.
+
+If you need to conduct the experiments via a remote connection, you will need to configure a VNC server on the remote device and a VNC viewer on your local machine. The configuration process is as follows:
+
+```shell
+TODO
+```
+
 ## Build and Run
 
 Activate the created Python virtual environment:：
