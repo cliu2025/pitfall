@@ -4,6 +4,8 @@ figure/*
 
 lib/__pycache__/
 
+!data/.gitkeepit
+
 !figure/example-*
 !figure/artifact.png
 
