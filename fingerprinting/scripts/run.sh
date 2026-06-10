@@ -58,8 +58,8 @@ echo "========================================"
 echo "[3/3] Analyze data"
 echo "========================================"
 python3 scripts/check_results.py --data_file default
-
+mv default/fig8.png ../../figure/fig8.png
 echo ""
 echo "========================================"
-echo "Done"
+echo "Done. Please check figure/fig8.png"
 echo "========================================"
