@@ -30,10 +30,10 @@ echo "========================================"
 mkdir -p "$PWD/fingerprinting/chrome_path"
 
 echo "Downloading Chrome..."
-wget -c -O "$PWD/fingerprinting/chrome_path/chrome-linux64.zip" "$CFT_BASE_URL/chrome-linux64.zip"
+wget -O "$PWD/fingerprinting/chrome_path/chrome-linux64.zip" "$CFT_BASE_URL/chrome-linux64.zip"
 
 echo "Downloading ChromeDriver..."
-wget -c -O "$PWD/fingerprinting/chrome_path/chromedriver-linux64.zip" "$CFT_BASE_URL/chromedriver-linux64.zip"
+wget -O "$PWD/fingerprinting/chrome_path/chromedriver-linux64.zip" "$CFT_BASE_URL/chromedriver-linux64.zip"
 
 echo ""
 echo "========================================"
