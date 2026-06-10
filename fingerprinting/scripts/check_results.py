@@ -72,6 +72,74 @@ def get_accs(X, y, domains):
 
     return [top1, top5]
 
+def plot_confusion_matrix(X, y, domains, out_file="confusion_matrix.png"):
+    X_train, X_test, y_train, y_test = train_test_split(
+        X,
+        y,
+        test_size=opts.test_size,
+        stratify=y,
+        random_state=0,
+    )
+
+    clf = RandomForestClassifier(random_state=0)
+    clf.fit(X_train, y_train)
+
+    y_pred = clf.predict(X_test)
+
+    n_classes = len(domains)
+    labels = np.arange(n_classes)
+
+    cm = confusion_matrix(y_test, y_pred, labels=labels)
+
+    # Normalize by row: each website sums to 1
+    row_sums = cm.sum(axis=1, keepdims=True)
+    cm_norm = np.divide(
+        cm,
+        row_sums,
+        out=np.zeros_like(cm, dtype=float),
+        where=row_sums != 0,
+    )
+
+    # Automatically adjust figure size
+    fig_size = max(6, min(18, n_classes * 0.18))
+    fig, ax = plt.subplots(figsize=(fig_size, fig_size))
+
+    im = ax.imshow(cm_norm, interpolation="nearest", cmap="Blues", vmin=0, vmax=1)
+
+    ax.set_xlabel("Prediction")
+    ax.set_ylabel("Website")
+
+    # Automatically adjust tick density
+    if n_classes <= 30:
+        tick_step = 1
+    elif n_classes <= 60:
+        tick_step = 5
+    elif n_classes <= 120:
+        tick_step = 10
+    elif n_classes <= 250:
+        tick_step = 25
+    else:
+        tick_step = 50
+
+    ticks = np.arange(0, n_classes, tick_step)
+    ax.set_xticks(ticks)
+    ax.set_yticks(ticks)
+
+    # Show labels as 1..N, like your example
+    ax.set_xticklabels(ticks + 1)
+    ax.set_yticklabels(ticks + 1)
+
+    ax.set_xlim(-0.5, n_classes - 0.5)
+    ax.set_ylim(n_classes - 0.5, -0.5)
+
+    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+
+    plt.tight_layout()
+    plt.savefig(out_file, dpi=300)
+    plt.close()
+
+    print(f"Saved confusion matrix to {out_file}")
+    
 print(f"Analyzing results from {opts.data_file}")
 
 X, y, domains = get_data(opts.data_file)
@@ -88,3 +156,12 @@ print(f"Number of traces: {len(X)}")
 print()
 print("top1 accuracy: {:.1f}% (+/- {:.1f}%)".format(top1 * 100, top1_std * 100))
 print("top5 accuracy: {:.1f}% (+/- {:.1f}%)".format(top5 * 100, top5_std * 100))
+
+plot_confusion_matrix(
+    X,
+    y,
+    domains,
+    out_file=os.path.join(opts.data_file, "fig8.png")
+    if os.path.isdir(opts.data_file)
+    else "fig8.png",
+)
