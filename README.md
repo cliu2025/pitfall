@@ -8,7 +8,7 @@ The SFP is used to predict whether a store-load pair with an unknown data depend
 
 Pitfall comprises two novel transient execution attacks (Pitfall-v1 and Pitfall-v2) and a website fingerprinting attack (Pitfall-v3). The attack flows for all three are illustrated in the figure below (Fig. 4 in the paper).
 
-![Overview of Pitfall Attacks](images\artifact.png)
+![Overview of Pitfall Attacks](figure/artifact.png)
 
 Pitfall-v1 exploits the transient execution caused by SFP mispredictions to achieve an in-place Spectre attack within a single process. Pitfall-v2 leverages the characteristic that the SFP can share prediction entries across store-load instruction pairs with different addresses to achieve an out-of-place Spectre attack within a single process. Pitfall-v3 exploits the SFP's behavior of flushing during context switches.
 
