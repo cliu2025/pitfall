@@ -112,9 +112,61 @@ We recommend running the Pitfall-v3 experiments on a Linux operating system equi
 
 If you need to conduct the experiments via a remote connection, you will need to configure a VNC server on the remote device and a VNC viewer on your local machine. The configuration process is as follows:
 
+#### 1. Install VNC server and desktop environment on the remote server
+
 ```shell
-TODO
+sudo apt update
+sudo apt install -y tigervnc-standalone-server tigervnc-common xfce4 xfce4-goodies xfce4-session xfwm4 xfdesktop4 xfce4-panel dbus-x11 x11-xserver-utils xterm
 ```
+
+#### 2. Set a VNC password
+
+```shell
+vncpasswd
+```
+
+#### 3. Configure the VNC startup script
+
+```shell
+mkdir -p ~/.vnc
+
+cat > ~/.vnc/xstartup <<'EOF'
+#!/bin/sh
+
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+unset WAYLAND_DISPLAY
+unset XDG_SESSION_PATH
+unset XDG_RUNTIME_DIR
+
+export XKL_XMODMAP_DISABLE=1
+export XDG_SESSION_TYPE=x11
+export DESKTOP_SESSION=xfce
+export XDG_CURRENT_DESKTOP=XFCE
+
+xrdb "$HOME/.Xresources" 2>/dev/null || true
+
+exec dbus-launch --exit-with-session startxfce4
+EOF
+
+chmod +x ~/.vnc/xstartup
+```
+
+#### 4. Start the VNC server
+
+```shell
+vncserver :1 -localhost yes -geometry 1920x1080 -depth 24 -xstartup "$HOME/.vnc/xstartup"
+```
+
+The VNC display `:1` corresponds to port `5901`.
+
+Check whether the VNC server is running:
+
+```shell
+vncserver -list
+ss -lntp | grep 5901
+```
+
 
 ## Build and Run
 
