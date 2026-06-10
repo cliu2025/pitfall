@@ -1,7 +1,10 @@
 bin/*
 data/*
 figure/*
+
 lib/__pycache__/
 
 !figure/example-*
 !figure/artifact.png
+
+.DS_Store
