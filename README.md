@@ -167,6 +167,23 @@ vncserver -list
 ss -lntp | grep 5901
 ```
 
+#### 5. Start the VNC viewer
+
+Since the VNC server is started with `-localhost yes`, the VNC port is only bound to the remote server's loopback interface and cannot be accessed directly from another machine. Therefore, you should first create an SSH tunnel from your local machine to the remote server. For example, if the remote server IP address is 123.123.123.123, the SSH username is user, and the VNC server is running on display :1 corresponding to port 5901, run the following command on your local machine:
+
+```shell
+ssh -L 5901:127.0.0.1:5901 user@123.123.123.123
+```
+
+Keep this SSH session open. Then launch a VNC viewer on your local machine and connect to: `127.0.0.1:5901`.
+
+When prompted, enter the VNC password configured by vncpasswd. If the local port 5901 is already occupied, you can use another local port, for example:
+
+```shell
+ssh -L 15901:127.0.0.1:5901 <user-name>@<ip>
+```
+
+In this case, connect the VNC viewer to: `127.0.0.1:15901`.
 
 ## Build and Run
 
